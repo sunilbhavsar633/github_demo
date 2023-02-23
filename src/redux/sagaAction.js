@@ -4,14 +4,16 @@ import axios from "axios";
 import { GET_REPO } from '../API/APIEndpoints';
 
 // const base_url = process.env.REACT_APP_API_BASE_URL || 'https://api.github.com';
-const limit = process.env.REACT_APP_LIMIT || 5;
+// const limit = process.env.REACT_APP_LIMIT || 5;
+const limit = 5;
 const base_url = 'https://api.github.com';
-const token = process.env.REACT_APP_GIT_TOKEN || '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';
+// const token = process.env.REACT_APP_GIT_TOKEN || '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';
+const token =  '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';
 
 
 function* getContributors(params) {
     const apiURL = `${base_url}/repos/${params.fullName}/stats/contributors`;
-    let resp = yield axios.get(`${apiURL}`, {
+    const resp = yield axios.get(`${apiURL}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -22,7 +24,7 @@ function* getContributors(params) {
 
 function* getCodeFreq(params){
     const apiURL = `${base_url}/repos/${params.fullName}/stats/code_frequency`;
-    let resp = yield axios.get(`${apiURL}`, {
+    const resp = yield axios.get(`${apiURL}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -32,7 +34,7 @@ function* getCodeFreq(params){
 }
 function* getCommitActivity(params){
     const apiURL = `${base_url}/repos/${params.fullName}/stats/commit_activity`;
-    let resp = yield axios.get(`${apiURL}`, {
+    const resp = yield axios.get(`${apiURL}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -46,7 +48,7 @@ function*  getRepoList(params) {
     const order='asc';
     const page=params?.page ||1;
     const apiURL = `${base_url}${GET_REPO}?q=Q&sort=${sort}&order=${order}&page=${page}&per_page=${limit}`;
-    let resp = axios.get(`${apiURL}`, {
+    const resp = axios.get(`${apiURL}`, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
